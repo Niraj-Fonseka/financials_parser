@@ -32,3 +32,19 @@ var MothToColumnDashboard = map[string]string{
 	"november":  "M",
 	"december":  "N",
 }
+
+//Month to column map
+var MonthToAbbrMonthly = map[string]string{
+	"january":   "Jan",
+	"february":  "Feb",
+	"march":     "Mar",
+	"april":     "Apr",
+	"may":       "May",
+	"June":      "Jun",
+	"July":      "Jul",
+	"august":    "Aug",
+	"september": "Sep",
+	"october":   "Oct",
+	"november":  "Nov",
+	"december":  "Dec",
+}

@@ -22,7 +22,7 @@ func GETbillsListMonthly(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"error": err,
+			"error": err.Error(),
 		})
 	} else {
 		c.JSON(200, gin.H{
