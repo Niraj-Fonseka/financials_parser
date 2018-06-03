@@ -44,9 +44,11 @@ func DashboardBillsListMonthly(month string) map[string]string {
 	payload := make(map[string]string)
 
 	spreadsheetId := os.Getenv("SHEETID")
+	columnID := MothToColumnDashboard[month]
+	columnIndex := ColumnToIndexDashboard[columnID]
 
 	fmt.Printf("Spreadsheet id %s \n", spreadsheetId)
-	readRange := "Dashboard!B16:" + month + "22"
+	readRange := "Dashboard!B16:" + columnID + "22"
 
 	fmt.Println(readRange)
 	resp, err := SheetService.Spreadsheets.Values.Get(spreadsheetId, readRange).Do()
@@ -59,12 +61,16 @@ func DashboardBillsListMonthly(month string) map[string]string {
 		fmt.Println("No data found.")
 	} else {
 
+		fmt.Printf("Length : %d \n", len(resp.Values))
+		fmt.Printf("Column ID : %s , column Index : %d \n", columnID, columnIndex)
+		fmt.Println(resp.Values)
 		for _, row := range resp.Values {
 			// Print columns A and E, which correspond to indices 0 and 4.
 
 			//billsList = append(billsList, string(row[0]))
-			fmt.Printf("%s - %s \n", row[0].(string), row[1].(string))
-			payload[row[0].(string)] = row[1].(string)
+
+			fmt.Printf("%s - %s \n", row[0].(string), row[columnIndex].(string))
+			payload[row[0].(string)] = row[columnIndex].(string)
 			//billsList = append(billsList, row[0].(string))
 		}
 	}
