@@ -18,9 +18,16 @@ func GETbillsList(c *gin.Context) {
 func GETbillsListMonthly(c *gin.Context) {
 	month := c.Param("month")
 
-	bymonth := models.DashboardBillsListMonthly(month)
+	bymonth, err := models.DashboardBillsListMonthly(month)
 
-	c.JSON(200, gin.H{
-		"bymonth": bymonth,
-	})
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err,
+		})
+	} else {
+		c.JSON(200, gin.H{
+			"bymonth": bymonth,
+		})
+	}
+
 }
