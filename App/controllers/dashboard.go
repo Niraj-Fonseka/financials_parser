@@ -14,3 +14,13 @@ func GETbillsList(c *gin.Context) {
 	})
 
 }
+
+func GETbillsListMonthly(c *gin.Context) {
+	month := c.Param("month")
+
+	bymonth := models.DashboardBillsListMonthly(month)
+
+	c.JSON(200, gin.H{
+		"bymonth": bymonth,
+	})
+}

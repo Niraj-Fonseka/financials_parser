@@ -15,6 +15,7 @@ func InitRouters(router *gin.Engine) *gin.Engine {
 	dash := router.Group("/dashboard")
 	{
 		dash.GET("/bills", controllers.GETbillsList)
+		dash.GET("/bills/:month", controllers.GETbillsListMonthly)
 	}
 
 	return router
