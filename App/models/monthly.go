@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func MonthlySummary(month string) (map[string]string, error) {
+func MonthlySpeditures(month string) (map[string]string, error) {
 	//var billsList []string
 	payload := make(map[string]string)
 
